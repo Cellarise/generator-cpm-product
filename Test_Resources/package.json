@@ -1,0 +1,56 @@
+{
+  "author": "John Barry",
+  "name": "test-app",
+  "description": "My new test app",
+  "version": "0.0.0",
+  "license": "MIT License (MIT)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Cellarise/.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "config": {
+    "private": false,
+    "projectCode": "MODTEST",
+    "build": "n/a",
+    "buildTimestamp": "2014-08-13T04:52:58.448Z",
+    "adminEmail": "mail@cellarise.com",
+    "coverage": {
+      "watermarks": {
+        "statements": [
+          50,
+          80,
+          20
+        ],
+        "lines": [
+          50,
+          80,
+          20
+        ],
+        "functions": [
+          50,
+          80,
+          20
+        ],
+        "branches": [
+          50,
+          80,
+          20
+        ]
+      }
+    }
+  },
+  "main": "./lib",
+  "directories": {
+    "lib": "lib",
+    "bin": "bin",
+    "doc": "doc",
+    "tasks": "tasks",
+    "templates": "templates",
+    "test": "Test",
+    "reports": "Reports",
+    "build": "Build"
+  }
+}

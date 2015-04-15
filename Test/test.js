@@ -18,7 +18,7 @@ var logger = require("bunyan").createLogger({"name": "TEST", "stream": formatOut
 
 //setup test 'world' context object and logger
 //Note: world.before and world.after are reserved for adding before and after functions
-var context = {"world": {"logger": logger}};
+var worldContext = {"world": {"logger": logger}};
 
 //execute all unit test feature files
 if (directories.hasOwnProperty("testFeatures")) {
@@ -44,12 +44,13 @@ new Yadda.FeatureFileSearch([testFeatures]).each(function eachFeatureFile(file) 
 
     featureFile(file, function featureFile(feature) {
       var libraries = [], loadedLibraries, yadda;
+
       //helper function to prepare multiple libraries for loading into the yadda interpreter
-      var requireLibraries = function requireLibraries(libraries) {
-        var requireLibrary = function requireLibrary(libraries, library) {
-          return libraries.concat(require(library));
+      var requireLibraries = function requireLibraries(libraries1) {
+        var requireLibrary = function requireLibrary(libraries2, library) {
+          return libraries2.concat(require(library));
         };
-        return libraries.reduce(requireLibrary, []);
+        return libraries1.reduce(requireLibrary, []);
       };
 
       //get libraries to load and load
@@ -63,26 +64,26 @@ new Yadda.FeatureFileSearch([testFeatures]).each(function eachFeatureFile(file) 
       loadedLibraries = requireLibraries(libraries);
 
       //initiate yadda and execute each scenario
-      yadda = new Yadda.Yadda(loadedLibraries, context);
-      scenarios(feature.scenarios, function scenario(scenario) {
+      yadda = new Yadda.Yadda(loadedLibraries, worldContext);
+      scenarios(feature.scenarios, function scenario(scenarioParam) {
         //before test setup
         before(function before(done) {
-          if (context.world.hasOwnProperty("before")) {
-            context.world.before(done);
-            delete context.world.before;
+          if (worldContext.world.hasOwnProperty("before")) {
+            worldContext.world.before(done);
+            delete worldContext.world.before;
           } else {
             done();
           }
         });
         //run steps
-        steps(scenario.steps, function step(step, done) {
-          yadda.yadda(step, done);
+        steps(scenarioParam.steps, function step(stepParam, done) {
+          yadda.yadda(stepParam, done);
         });
         //after test teardown
         after(function after(done) {
-          if (context.world.hasOwnProperty("after")) {
-            context.world.after(done);
-            delete context.world.after;
+          if (worldContext.world.hasOwnProperty("after")) {
+            worldContext.world.after(done);
+            delete worldContext.world.after;
           } else {
             done();
           }
