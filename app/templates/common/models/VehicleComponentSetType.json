@@ -1,0 +1,102 @@
+{
+  "name": "VehicleComponentSetType",
+  "plural": "VehicleComponentSetTypes",
+  "description": [
+    "A type of heavy vehicle component set"
+  ],
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "hierarchy": {
+      "type": "string",
+      "label": "Hierarchy Type",
+      "description": "The hierarchy type"
+    },
+    "orderNum": {
+      "type": "number",
+      "label": "Order Number",
+      "description": "The order number of the item on its branch"
+    },
+    "parent": {
+      "type": "number",
+      "label": "Parent",
+      "description": "The parent vehicle component set type"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "label": "Name",
+      "description": "The vehicle component set type name"
+    },
+    "shortName": {
+      "type": "string",
+      "label": "Short name",
+      "description": "The vehicle component set type short name"
+    },
+    "code": {
+      "type": "string",
+      "required": true,
+      "label": "Code",
+      "description": "The vehicle component set type code"
+    },
+    "example": {
+      "type": "number",
+      "label": "Example vehicle component set",
+      "description": "The vehicle component set type example (from child vehicle component sets)"
+    },
+    "archived": {
+      "type": "boolean",
+      "default": false,
+      "required": true,
+      "label": "End component",
+      "description": "Flag indicating whether this component set type has been archived"
+    },
+    "created": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Created",
+      "description": "The date the vehicle component set type was created"
+    },
+    "modified": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Modified",
+      "description": "The date the vehicle component set type was last modified"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "vehicleComponentSet": {
+      "type": "hasMany",
+      "model": "VehicleComponentSet"
+    },
+    "vehicleComponentSetExample": {
+      "type": "belongsTo",
+      "model": "VehicleComponentSet",
+      "foreignKey": "example"
+    }
+  },
+  "acls": [{
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    }],
+  "methods": []
+}

@@ -1,0 +1,52 @@
+{
+  "name": "OperationsAccountUserMapping",
+  "plural": "OperationsAccountUserMappings",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "operationsAccountId": {
+      "type": "number",
+      "required": true,
+      "label": "Operations account id",
+      "description": "The unique identifier for the operations account"
+    },
+    "userModelId": {
+      "type": "number",
+      "required": true,
+      "label": "User profile id",
+      "description": "The unique identifier for the user profile"
+    },
+    "role": {
+      "type": "string",
+      "required": true,
+      "label": "Role",
+      "description": "The account mapping role"
+    },
+    "created": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Created",
+      "description": "The date the customer account was created"
+    },
+    "modified": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Modified",
+      "description": "The date the customer account was last modified"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "operationsAccount": {
+      "type": "belongsTo",
+      "model": "OperationsAccount"
+    },
+    "userModel": {
+      "type": "belongsTo",
+      "model": "UserModel"
+    }
+  },
+  "acls": []
+}

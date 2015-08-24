@@ -1,14 +1,19 @@
 {
   "_meta": {
     "sources": [
-      "loopback/common/models",
-      "loopback/server/models",
-      "../common/models",
-      "./models"
+      "../common/models"
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "db",
+    "public": false
+  },
+  "UserModel": {
+    "dataSource": "db",
+    "public": true,
+    "options": {
+      "emailVerificationRequired": true
+    }
   },
   "AccessToken": {
     "dataSource": "db",
@@ -25,5 +30,84 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "Email": {
+    "dataSource": "emailDs"
+  },
+  "storage": {
+    "dataSource": "storage",
+    "public": false
+  },
+  "CustomerAccount": {
+    "dataSource": "db",
+    "public": true
+  },
+  "CustomerAccountUserMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "PartnerAccount": {
+    "dataSource": "db",
+    "public": true
+  },
+  "PartnerAccountUserMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "OperationsAccount": {
+    "dataSource": "db",
+    "public": true
+  },
+  "OperationsAccountUserMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ContractorAccount": {
+    "dataSource": "db",
+    "public": true
+  },
+  "ContractorAccountUserMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "CustomerCase": {
+    "dataSource": "db",
+    "public": true
+  },
+  "PartnerConsent": {
+    "dataSource": "db",
+    "public": true
+  },
+  "VehicleComponentType": {
+    "dataSource": "db",
+    "public": true
+  },
+  "VehicleComponent": {
+    "dataSource": "db",
+    "public": true
+  },
+  "VehicleComponentConnection": {
+    "dataSource": "db",
+    "public": true
+  },
+  "VehicleComponentSetType": {
+    "dataSource": "db",
+    "public": true
+  },
+  "VehicleComponentSet": {
+    "dataSource": "db",
+    "public": true
+  },
+  "VehicleComponentSetItem": {
+    "dataSource": "db",
+    "public": true
+  },
+  "CustomerVehicleSet": {
+    "dataSource": "db",
+    "public": true
+  },
+  "CustomerVehicleSetItem": {
+    "dataSource": "db",
+    "public": true
   }
 }

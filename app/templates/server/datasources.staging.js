@@ -1,2 +1,2 @@
 "use strict";
-module.exports = require("./datasources-loader");
+module.exports = require("./scripts/datasources-loader");

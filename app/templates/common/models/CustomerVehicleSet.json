@@ -1,0 +1,204 @@
+{
+  "name": "CustomerVehicleSet",
+  "plural": "CustomerVehicleSets",
+  "description": [
+    "A customers heavy vehicle configuration"
+  ],
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "customerAccountId" : {
+      "type": "string",
+      "required": true,
+      "label": "Customer account id",
+      "description": "The unique identifier for the customer account"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "label": "Name",
+      "description": "The vehicle configuration name"
+    },
+    "description": {
+      "type": "string",
+      "label": "Short name",
+      "description": "The vehicle configuration description"
+    },
+    "code": {
+      "type": "string",
+      "required": true,
+      "label": "Code",
+      "description": "The vehicle configuration code"
+    },
+    "width": {
+      "type": "number",
+      "label": "Width (m)",
+      "description": "The vehicles width in metres"
+    },
+    "length": {
+      "type": "number",
+      "label": "Length (m)",
+      "description": "The vehicles length in metres"
+    },
+    "height": {
+      "type": "number",
+      "label": "Height (m)",
+      "description": "The vehicles height in metres"
+    },
+    "forwardProjection": {
+      "type": "number",
+      "label": "Forward projection (m)",
+      "description": "The vehicles forward projection in metres"
+    },
+    "rearOverhang": {
+      "type": "number",
+      "label": "Rear Overhang (m)",
+      "description": "The vehicles rear overhang in metres"
+    },
+    "removedParts": {
+      "type": "string",
+      "label": "Removed parts",
+      "description": "The vehicles removed parts (e.g. counterweight)"
+    },
+    "tareMass": {
+      "type": "number",
+      "label": "Tare mass (t)",
+      "description": "The vehicles mass in tonnes when unloaded"
+    },
+    "totalMass": {
+      "type": "number",
+      "label": "Total mass (t)",
+      "description": "The vehicles total mass in tonnes when loaded"
+    },
+    "archived": {
+      "type": "boolean",
+      "default": false,
+      "required": true,
+      "label": "End component",
+      "description": "Flag indicating whether this vehicle configuration has been archived"
+    },
+    "created": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Created",
+      "description": "The date the vehicle configuration was created"
+    },
+    "modified": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Modified",
+      "description": "The date the vehicle configuration was last modified"
+    }
+  },
+  "validations": [{
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string",
+      "required": true
+    },
+    "width": {
+      "type": "number",
+      "range": {
+        "min": 0,
+        "max": 50,
+        "message": "Width should be between 0 and 50 metres"
+      }
+    },
+    "length": {
+      "type": "number",
+      "range": {
+        "min": 0,
+        "max": 50,
+        "message": "Length should be between 0 and 50 metres"
+      }
+    },
+    "height": {
+      "type": "number",
+      "range": {
+        "min": 0,
+        "max": 50,
+        "message": "Height should be between 0 and 50 metres"
+      }
+    },
+    "forwardProjection": {
+      "type": "number",
+      "range": {
+        "min": 0,
+        "max": 50,
+        "message": "Forward projection should be between 0 and 50 metres"
+      }
+    },
+    "rearOverhang": {
+      "type": "number",
+      "range": {
+        "min": 0,
+        "max": 50,
+        "message": "Rear overhang should be between 0 and 50 metres"
+      }
+    },
+    "removedParts": {
+      "type": "string"
+    },
+    "tareMass": {
+      "type": "number",
+      "range": {
+        "min": 0,
+        "max": 1000,
+        "message": {
+          "min": "Tare mass must be greater than or equal to 0 tonnes",
+          "max": "Tare mass must be lower than or equal to 1000 tonnes"
+        }
+      }
+    },
+    "totalMass": {
+      "type": "number",
+      "range": {
+        "min": 0,
+        "max": 1000,
+        "message": {
+          "min": "Total mass must be greater than or equal to 0 tonnes",
+          "max": "Total mass must be lower than or equal to 1000 tonnes"
+        }
+      }
+    }
+  }],
+  "relations": {
+    "customerAccount": {
+      "type": "belongsTo",
+      "model": "CustomerAccount"
+    },
+    "customerVehicleSetItem": {
+      "type": "hasMany",
+      "model": "CustomerVehicleSetItem"
+    }
+  },
+  "acls": [{
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    }],
+  "methods": []
+}

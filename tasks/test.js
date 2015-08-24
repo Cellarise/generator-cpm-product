@@ -12,14 +12,21 @@
 module.exports = function testTasks(gulp, context) {
   var mocha = require("gulp-mocha");
   var mkdirp = require("mkdirp");
-  var istanbul = require("gulp-istanbul-custom-reports");
+  var istanbul = require("gulp-istanbul");
+  var gutil = require("gulp-util");
   var glob = require("glob");
   var path = require("path");
-  var _ = require("underscore");
+  var R = require("ramda");
   var logger = context.logger;
 
   var handleError = function handleError(err) {
     logger.error(err.toString());
+    if (process.env.CI) {
+      throw new gutil.PluginError({
+        "plugin": "Gulp Mocha",
+        "message": err.toString()
+      });
+    }
     this.emit("end"); //jshint ignore:line
   };
 
@@ -30,7 +37,7 @@ module.exports = function testTasks(gulp, context) {
     var sourceGlobStr = directories.lib + "/**/*.js";
     var scriptPath;
     //require all library scripts to ensure istanbul picks up
-    _.each(glob.sync(sourceGlobStr), function eachSourceGlobStrFN(value) {
+    R.forEach(function eachSourceGlobStrFN(value) {
       scriptPath = path.resolve(process.cwd(), value);
       try {
         require(scriptPath); // Make sure all files are loaded to get accurate coverage data
@@ -38,7 +45,7 @@ module.exports = function testTasks(gulp, context) {
       } catch (err) {
         logger.warn("Could not load: " + scriptPath);
       }
-    });
+    }, glob.sync(sourceGlobStr));
 
     //set YADDA_FEATURE_GLOB if argv[2]
     if (context.argv.length === 2) {
@@ -46,22 +53,21 @@ module.exports = function testTasks(gulp, context) {
       logger.info("Set process.env.YADDA_FEATURE_GLOB=" + process.env.YADDA_FEATURE_GLOB);
     }
 
-    return gulp.src(directories.test + "/test.js")
+    return gulp.src(path.resolve(process.cwd(), directories.test + "/test.js"), {"read": false})
       .pipe(mocha({
         "reporter": reporter,
         "timeout": 600000
       }))
       .on("error", handleError)
       .pipe(istanbul.writeReports({
-        "reporters": ["html", "clover-limits", "json-summary"],
+        "coverageVariable": "__cpmCoverage__",
+        "reporters": ["html", "lcov", require("istanbul-reporter-clover-limits"), "json-summary"],
         "reportOpts": {
           "dir": cwd + "/" + directories.reports + "/code-coverage",
           "watermarks": pkg.config.coverage.watermarks
         }
       }));
   };
-
-  istanbul.registerReport(require("istanbul-reporter-clover-limits"));
 
   /**
    * A gulp build task to instrument files.
@@ -81,7 +87,9 @@ module.exports = function testTasks(gulp, context) {
      * Make sure all these tasks do not require local references as defined above.
      */
     return gulp.src(sourceGlobStr)
-      .pipe(istanbul()); // Covering files - note: finish event called when finished (not end event)
+      .pipe(istanbul({"coverageVariable": "__cpmCoverage__"}))
+      .pipe(istanbul.hookRequire()); // Force `require` to return covered files
+        // Covering files - note: finish event called when finished (not end event)
   });
 
   /**

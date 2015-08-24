@@ -1,0 +1,7 @@
+Reports
+Reports/**/*
+Tools
+Tools/**/*
+Temp
+Temp/**/*
+*.log

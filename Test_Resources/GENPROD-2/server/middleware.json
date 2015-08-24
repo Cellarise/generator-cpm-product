@@ -11,7 +11,7 @@
   },
   "parse": {
     "body-parser#urlencoded": {"params": {"extended": false, "limit": "100kb"}},
-    "body-parser#json": {"params": {"limit": "10mb"}}
+    "body-parser#json": {"params": {"limit": "100kb"}}
   },
   "routes": {
     "loopback#status": {"paths": "/status"}

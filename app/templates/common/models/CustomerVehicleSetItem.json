@@ -1,0 +1,160 @@
+{
+  "name": "CustomerVehicleSetItem",
+  "plural": "CustomerVehicleSetItems",
+  "description": [
+    "A heavy vehicle component within a customer vehicle configuration"
+  ],
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "customerVehicleSetId": {
+      "type": "number",
+      "required": true,
+      "label": "Customer vehicle set",
+      "description": "The customer vehicle configuration container"
+    },
+    "vehicleComponentId": {
+      "type": "number",
+      "required": true,
+      "label": "Vehicle Component",
+      "description": "The vehicle component"
+    },
+    "registration": {
+      "type": "string",
+      "required": true,
+      "label": "Vehicle registration number",
+      "description": "The vehicle registration number"
+    },
+    "state": {
+      "type": "string",
+      "required": true,
+      "label": "Vehicle registration state",
+      "description": "The state the vehicle was registered"
+    },
+    "VIN": {
+      "type": "string",
+      "required": true,
+      "label": "Vehicle Identification Number",
+      "description": "The Vehicle Identification Number (VIN / Chassis number)"
+    },
+    "make": {
+      "type": "string",
+      "required": true,
+      "label": "Vehicle make",
+      "description": "The vehicle make"
+    },
+    "model": {
+      "type": "string",
+      "label": "Vehicle model",
+      "description": "The vehicle model"
+    },
+    "grossMass": {
+      "type": "number",
+      "label": "GVM / GTM / GCM",
+      "description": "The Gross Vehicle Mass (GVM), Gross Trailer Mass (GTM) or Gross Combination Mass (GCM)"
+    },
+    "spec": {
+      "type": "JSON",
+      "length": 1024,
+      "label": "Axles specification",
+      "description": "The vehicle component axle mass and spacings configuration."
+    }
+  },
+  "validations": [
+    {
+      "customerVehicleSetId": {
+        "type": "number",
+        "required": true
+      },
+      "vehicleComponentId": {
+        "type": "number",
+        "required": true
+      },
+      "registration": {
+        "type": "string",
+        "required": true,
+        "length": {
+          "min": 3,
+          "message": "Registration should be greater than 3 characters"
+        }
+      },
+      "state": {
+        "type": "string",
+        "required": true,
+        "inclusion": {
+          "in": [
+            "ACT","Qld","NSW","NT","SA","WA","Vic"
+          ],
+          "message": "The state should be one of the list items"
+        }
+      },
+      "VIN": {
+        "type": "string",
+        "required": true,
+        "length": {
+          "min": 9,
+          "max": 9,
+          "message": "VIN should be 9 characters"
+        }
+      },
+      "make": {
+        "type": "string",
+        "required": true,
+        "inclusion": {
+          "in": [
+            "DAF Trucks","Freightliner Trucks","Hino","Iveco","Isuzu","Kenworth","Mack Trucks",
+            "Mercedes-Benz","Scania","FUSO","Volvo Trucks"
+          ],
+          "message": "The make should be one of the list items"
+        }
+      },
+      "model": {
+        "type": "string"
+      },
+      "grossMass": {
+        "type": "number",
+        "range": {
+          "min": 0,
+          "max": 50,
+          "message": "Width should be between 0 and 50 metres"
+        }
+      },
+      "spec": {
+        "type": "JSON"
+      }
+    }
+  ],
+  "relations": {
+    "customerVehicleSet": {
+      "type": "belongsTo",
+      "model": "CustomerVehicleSet"
+    },
+    "vehicleComponent": {
+      "type": "belongsTo",
+      "model": "VehicleComponent"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    }
+  ],
+  "methods": []
+}

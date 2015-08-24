@@ -1,8 +1,9 @@
-# API
+## API
 <a name="module_cpm-product"></a>
-#cpm-product
+### cpm-product
 Yeoman generator for Cellarise products
 **Example**  
+```none
 ## Generators
 
 Available generators:
@@ -12,5 +13,9 @@ Available generators:
 
 ### App
 Sets up a new Cellarise product, generating all the boilerplate code to fast track development.
+
+```
+
+-
 
 *documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*.

@@ -1,0 +1,52 @@
+{
+  "name": "ContractorAccountUserMapping",
+  "plural": "ContractorAccountUserMappings",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "contractorAccountId": {
+      "type": "string",
+      "required": true,
+      "label": "Contractor account id",
+      "description": "The unique identifier for the contractor account"
+    },
+    "userModelId": {
+      "type": "number",
+      "required": true,
+      "label": "User profile id",
+      "description": "The unique identifier for the user profile"
+    },
+    "role": {
+      "type": "string",
+      "required": true,
+      "label": "Role",
+      "description": "The account mapping role"
+    },
+    "created": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Created",
+      "description": "The date the contractor account was created"
+    },
+    "modified": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Modified",
+      "description": "The date the contractor account was last modified"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "contractorAccount": {
+      "type": "belongsTo",
+      "model": "ContractorAccount"
+    },
+    "userModel": {
+      "type": "belongsTo",
+      "model": "UserModel"
+    }
+  },
+  "acls": []
+}

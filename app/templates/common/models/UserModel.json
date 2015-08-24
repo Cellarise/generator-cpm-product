@@ -1,0 +1,302 @@
+{
+  "name": "UserModel",
+  "base": "User",
+  "idInjection": true,
+  "properties": {
+    "realm": {
+      "type": "string",
+      "label": "Realm",
+      "description": "The application namespace for the user"
+    },
+    "name": {
+      "type": "string",
+      "label": "Last name",
+      "description": "The last name of the user"
+    },
+    "firstName": {
+      "type": "string",
+      "label": "First name",
+      "description": "The first name of the user"
+    },
+    "middleName": {
+      "type": "string",
+      "label": "Middle initial",
+      "description": "The middle initial of the user"
+    },
+    "username": {
+      "type": "string",
+      "label": "Username",
+      "description": "The name of the user"
+    },
+    "password": {
+      "type": "string",
+      "required": true,
+      "label": "Password",
+      "description": "The password for the user"
+    },
+    "email": {
+      "type": "string",
+      "required": true,
+      "label": "Email address",
+      "description": "The email address of the user"
+    },
+    "emailVerified": {
+      "type": "boolean",
+      "label": "Email verified",
+      "description": "A flag indicating whether the user's email address is verified"
+    },
+    "verificationToken": {
+      "type": "string",
+      "label": "Verification token",
+      "description": "The email verification token for a newly registered user"
+    },
+    "status": {
+      "type": "string",
+      "label": "Status",
+      "description": "The status of the user profile"
+    },
+    "contactPreference": {
+      "type": "number",
+      "label": "Contact preference",
+      "description": "The contact preference of the user"
+    },
+    "addressLine1": {
+      "type": "string",
+      "label": "Address",
+      "description": "The user's contact address"
+    },
+    "addressLine2": {
+      "type": "string",
+      "label": "Address 2",
+      "description": "The user's contact address line 2"
+    },
+    "addressLocality": {
+      "type": "string",
+      "label": "Suburb",
+      "description": "The user's contact address suburb"
+    },
+    "addressState": {
+      "type": "string",
+      "label": "State",
+      "description": "The user's contact address state"
+    },
+    "addressPostcode": {
+      "type": "string",
+      "label": "Postcode",
+      "description": "The user's contact address postcode"
+    },
+    "addressCountry": {
+      "type": "string",
+      "label": "Country",
+      "description": "The user's contact address country"
+    },
+    "phone1": {
+      "type": "string",
+      "label": "Phone",
+      "description": "The user's contact number"
+    },
+    "phone1Type": {
+      "type": "string",
+      "label": "Phone type",
+      "description": "The user's contact number type"
+    },
+    "phone2": {
+      "type": "string",
+      "label": "Phone",
+      "description": "The user's contact number"
+    },
+    "phone2Type": {
+      "type": "string",
+      "label": "Phone type",
+      "description": "The user's contact number type"
+    },
+    "created": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Created",
+      "description": "The date the user profile was created"
+    },
+    "modified": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Modified",
+      "description": "The date the user profile was last modified"
+    }
+  },
+  "hidden": [
+    "password"
+  ],
+  "validations": [
+    {
+      "name": {
+        "type": "string",
+        "required": true,
+        "length": {
+          "max": 24
+        }
+      },
+      "firstName": {
+        "type": "string",
+        "required": true,
+        "length": {
+          "max": 24
+        }
+      },
+      "username": {
+        "type": "string",
+        "required": false,
+        "length": {
+          "min": 1,
+          "max": 24
+        }
+      },
+      "email": {
+        "type": "string",
+        "required": true,
+        "uniqueness": {
+          "message": "is not unique"
+        },
+        "format": {
+          "with": "\\S+@\\S+\\.\\S+",
+          "message": "should have an @ symbol and be followed by a domain suffix e.g. '.com'"
+        }
+      },
+      "password": {
+        "type": "string",
+        "required": true,
+        "length": {
+          "min": 7,
+          "message": {"min": "should be greater than 6 characters"}
+        }
+      },
+      "changePassword": {
+        "type": "string",
+        "required": false,
+        "length": {
+          "min": 7,
+          "message": {"min": "should be greater than 6 characters"}
+        }
+      },
+      "changePasswordConfirm": {
+        "type": "string",
+        "required": false,
+        "length": {
+          "min": 7,
+          "message": {"min": "should be greater than 6 characters"}
+        },
+        "passwordConfirm": {
+          "message": "is not equal to change password"
+        }
+      },
+      "addressState": {
+        "type": "string",
+        "required": false,
+        "inclusion": {
+          "in": [
+            "NT","Qld","NSW","ACT","Vic","Tas","SA","WA"
+          ]
+        }
+      },
+      "phone1": {
+        "type": "string",
+        "required": true,
+        "format": {
+          "with": "^\\(?0[23478]\\)?\\s?\\d{2}\\s?\\d{2}(\\s|\\-)?\\d{1}\\s?\\d{3}$",
+          "message": "should start with 0 and have 10 digits"
+        }
+      },
+      "phone1Type": {
+        "type": "string",
+        "required": true,
+        "inclusion": {
+          "in": [
+            "Work","Mobile"
+          ]
+        }
+      }
+    }
+  ],
+  "relations": {
+    "customerAccountUserMapping": {
+      "type": "hasMany",
+      "model": "CustomerAccountUserMapping"
+    },
+    "partnerAccountUserMapping": {
+      "type": "hasMany",
+      "model": "PartnerAccountUserMapping"
+    },
+    "operationsAccountUserMapping": {
+      "type": "hasMany",
+      "model": "OperationsAccountUserMapping"
+    },
+    "accessTokens": {
+      "type": "hasMany",
+      "model": "AccessToken"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "deleteById"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "findById"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "upsert"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "login"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "logout"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "reauthorise"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "confirm"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "resetPassword"
+    }
+  ],
+  "methods": []
+}

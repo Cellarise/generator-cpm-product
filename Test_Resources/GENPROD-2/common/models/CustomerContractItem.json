@@ -1,0 +1,83 @@
+{
+  "name": "CustomerContractItem",
+  "plural": "CustomerContractItems",
+  "description": [
+    "A customer contract item."
+  ],
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "customerContractId" : {
+      "type": "number",
+      "required": true,
+      "label": "Customer contract id",
+      "description": "The unique identifier for the contract"
+    },
+    "created": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Created",
+      "description": "The date the consent was created"
+    },
+    "modified": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Modified",
+      "description": "The date the consent was last modified"
+    },
+    "scheduleId" : {
+      "type": "string",
+      "label": "Schedule id",
+      "description": "The schedule id for the contract item"
+    },
+    "clientActivityNumber": {
+      "type": "string",
+      "label": "Client activity number",
+      "description": "The client's unique identifier for the contract item"
+    },
+    "uom" : {
+      "type": "string",
+      "label": "Unit of measure",
+      "description": "The unit of measure"
+    },
+    "quantity" : {
+      "type": "number",
+      "label": "Quantity",
+      "description": "The quantity or scope of the contract item"
+    },
+    "rate" : {
+      "type": "string",
+      "label": "Rate",
+      "description": "The rate"
+    },
+    "claimMethod" : {
+      "type": "string",
+      "label": "Claim method",
+      "description": "The claim method"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "customerContract": {
+      "type": "belongsTo",
+      "model": "CustomerContract"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "*"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    }]
+}

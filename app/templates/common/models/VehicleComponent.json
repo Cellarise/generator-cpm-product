@@ -1,0 +1,142 @@
+{
+  "name": "VehicleComponent",
+  "plural": "VehicleComponents",
+  "description": [
+    "A heavy vehicle component used for building a vehicle configuration"
+  ],
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "vehicleComponentTypeId": {
+      "type": "number",
+      "required": true,
+      "label": "Vehicle Component Type",
+      "description": "The vehicle component type"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "label": "Name",
+      "description": "The vehicle component name"
+    },
+    "shortName": {
+      "type": "string",
+      "label": "Short name",
+      "description": "The vehicle component short name"
+    },
+    "code": {
+      "type": "string",
+      "required": true,
+      "label": "Code",
+      "description": "The vehicle component code"
+    },
+    "axles": {
+      "type": "number",
+      "required": true,
+      "label": "Axles",
+      "description": "The number of axles on the vehicle component"
+    },
+    "axleGroups": {
+      "type": "number",
+      "required": true,
+      "label": "Axle Groups",
+      "description": "The number of axle groups on the vehicle component."
+    },
+    "spec": {
+      "type": "JSON",
+      "length": 1024,
+      "label": "Axles specification",
+      "description": "The vehicle component axle mass and spacings specification."
+    },
+    "motorised": {
+      "type": "boolean",
+      "required": true,
+      "label": "Motorised",
+      "description": "Flag indicating whether the vehicle component is motorised"
+    },
+    "coupling": {
+      "type": "string",
+      "label": "Coupling type",
+      "description": "The coupling type (usually associated with non-motorised vehicle components e.g. trailers)"
+    },
+    "image": {
+      "type": "string",
+      "required": true,
+      "label": "Image path",
+      "description": "The vehicle component image path"
+    },
+    "start": {
+      "type": "boolean",
+      "required": true,
+      "label": "Start component",
+      "description": "Flag indicating whether this component type can start a vehicle configuration"
+    },
+    "end": {
+      "type": "boolean",
+      "required": true,
+      "label": "End component",
+      "description": "Flag indicating whether this component type will end a vehicle configuration"
+    },
+    "archived": {
+      "type": "boolean",
+      "default": false,
+      "required": true,
+      "label": "End component",
+      "description": "Flag indicating whether this component has been archived"
+    },
+    "created": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Created",
+      "description": "The date the vehicle component was created"
+    },
+    "modified": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Modified",
+      "description": "The date the vehicle component was last modified"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "vehicleComponentType": {
+      "type": "belongsTo",
+      "model": "VehicleComponentType"
+    },
+    "vehicleComponentSetItem": {
+      "type": "hasMany",
+      "model": "VehicleComponentSetItem"
+    },
+    "customerVehicleSetItem": {
+      "type": "hasMany",
+      "model": "CustomerVehicleSetItem"
+    },
+    "vehicleComponentConnection": {
+      "type": "hasMany",
+      "model": "VehicleComponentConnection"
+    }
+  },
+  "acls": [{
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    }],
+  "methods": []
+}

@@ -1,7 +1,12 @@
 "use strict";
-var loopback = require('loopback');
-var boot = require('loopback-boot');
-var app = module.exports = loopback();
+var loopback, boot, app;
+var checkEnv = require('./scripts/checkEnvironment');
+//ensure consistent NODE_ENV used throughout application to prevent potential datamigrate issues in data-loader
+checkEnv.setEnvironment();
+require('./scripts/coverage').hook(); //hook coverage
+loopback = require('loopback');
+boot = require('loopback-boot');
+app = module.exports = loopback();
 
 //declare app.start method
 app.start = function appStart() {
@@ -16,7 +21,7 @@ app.start = function appStart() {
 };
 
 //boot script for loopback and associated middleware
-boot(app, __dirname, function boot(err) {
+boot(app, __dirname, function bootCallback(err) {
   if (err) {
     throw err;
   }

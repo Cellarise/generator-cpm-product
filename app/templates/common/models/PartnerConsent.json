@@ -1,0 +1,130 @@
+{
+  "name": "PartnerConsent",
+  "plural": "PartnerConsents",
+  "description": [
+    "A workflow object representing the state of a partner consent."
+  ],
+  "base": "PersistedModel",
+  "idInjection": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "generated": false,
+      "id": true,
+      "label": "Consent id",
+      "description": "The unique identifier for the consent"
+    },
+    "partnerAccountId" : {
+      "type": "string",
+      "required": true,
+      "label": "Partner account id",
+      "description": "The unique identifier for the partner account"
+    },
+    "customerCaseId" : {
+      "type": "string",
+      "required": true,
+      "label": "Customer case id",
+      "description": "The unique identifier for the case"
+    },
+    "created": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Created",
+      "description": "The date the consent was created"
+    },
+    "modified": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Modified",
+      "description": "The date the consent was last modified"
+    },
+    "createdExt": {
+      "type": "date",
+      "label": "Created SugarCRM",
+      "description": "The created date of the consent in SugarCRM"
+    },
+    "modifiedExt": {
+      "type": "date",
+      "label": "Modified SugarCRM",
+      "description": "The last modified date of the consent in SugarCRM"
+    },
+    "startDate": {
+      "type": "date",
+      "label": "Start date",
+      "description": "The date the consent request was first sent to partner"
+    },
+    "lastDate": {
+      "type": "date",
+      "label": "Last date",
+      "description": "The date the consent was last responded to by partner"
+    },
+    "completedDate": {
+      "type": "date",
+      "label": "Completed date",
+      "description": "The date the consent was completed"
+    },
+    "emailState" : {
+      "type": "string",
+      "label": "Email state",
+      "description": "The response state of the email communication channel"
+    },
+    "workflowState" : {
+      "type": "string",
+      "label": "Workflow state",
+      "description": "The consent workflow state"
+    },
+    "assignedUserExt" : {
+      "type": "string",
+      "label": "Assigned user",
+      "description": "The user assigned to the consent in SugarCRM"
+    },
+    "over28" : {
+      "type": "boolean",
+      "label": "Over 28 days",
+      "description": "A flag indicating whether the consent has been open for longer than 28 days"
+    },
+    "ageRange" : {
+      "type": "string",
+      "label": "Age range",
+      "description": "The age range of the consent"
+    },
+    "3_0TIME" : {
+      "type": "number",
+      "label": "3_0 time",
+      "description": "The duration of workflow step 3_0"
+    },
+    "3_0TIMEADJ" : {
+      "type": "number",
+      "label": "3_0 Adjusted time",
+      "description": "The adjusted duration of workflow step 3_0"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "partnerAccount": {
+      "type": "belongsTo",
+      "model": "PartnerAccount"
+    },
+    "customerCase": {
+      "type": "belongsTo",
+      "model": "CustomerCase"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "*"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    }]
+}

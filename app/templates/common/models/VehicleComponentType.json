@@ -1,0 +1,107 @@
+{
+  "name": "VehicleComponentType",
+  "plural": "VehicleComponentTypes",
+  "description": [
+    "A type of heavy vehicle component"
+  ],
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "hierarchy": {
+      "type": "string",
+      "label": "Hierarchy Type",
+      "description": "The hierarchy type"
+    },
+    "orderNum": {
+      "type": "number",
+      "label": "Order Number",
+      "description": "The order number of the item on its branch"
+    },
+    "parent": {
+      "type": "number",
+      "label": "Parent",
+      "description": "The parent vehicle component type"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "label": "Name",
+      "description": "The vehicle component type name"
+    },
+    "shortName": {
+      "type": "string",
+      "label": "Short name",
+      "description": "The vehicle component type short name"
+    },
+    "code": {
+      "type": "string",
+      "required": true,
+      "label": "Code",
+      "description": "The vehicle component type code"
+    },
+    "osom": {
+      "type": "boolean",
+      "label": "OSOM Flag",
+      "description": "Flag indicating whether this component is an oversize or overmass component type"
+    },
+    "example": {
+      "type": "number",
+      "label": "Example vehicle component",
+      "description": "The vehicle component example (from child vehicle components)"
+    },
+    "archived": {
+      "type": "boolean",
+      "default": false,
+      "required": true,
+      "label": "End component",
+      "description": "Flag indicating whether this component type has been archived"
+    },
+    "created": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Created",
+      "description": "The date the vehicle component type was created"
+    },
+    "modified": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Modified",
+      "description": "The date the vehicle component type was last modified"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "vehicleComponent": {
+      "type": "hasMany",
+      "model": "VehicleComponent"
+    },
+    "vehicleComponentExample": {
+      "type": "belongsTo",
+      "model": "VehicleComponent",
+      "foreignKey": "example"
+    }
+  },
+  "acls": [{
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    }],
+  "methods": []
+}

@@ -10,6 +10,13 @@
   "User": {
     "dataSource": "db"
   },
+  "UserModel": {
+    "dataSource": "db",
+    "public": true,
+    "options": {
+      "emailVerificationRequired": false
+    }
+  },
   "AccessToken": {
     "dataSource": "db",
     "public": false
@@ -25,5 +32,40 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "Email": {
+    "dataSource": "emailDs"
+  },
+  "CustomerAccount": {
+    "dataSource": "db",
+    "public": true
+  },
+  "CustomerAccountUserMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "PartnerAccount": {
+    "dataSource": "db",
+    "public": true
+  },
+  "PartnerAccountUserMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "OperationsAccount": {
+    "dataSource": "db",
+    "public": false
+  },
+  "OperationsAccountUserMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "CustomerContract": {
+    "dataSource": "db",
+    "public": true
+  },
+  "CustomerContractItem": {
+    "dataSource": "db",
+    "public": true
   }
 }

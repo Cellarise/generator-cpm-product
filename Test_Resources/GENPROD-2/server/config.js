@@ -7,7 +7,7 @@ module.exports = {
   //"cookieSecret": null
   "restApiRoot": '/api', //+ (version > 0 ? '/v' + version : ''),
   "host": process.env.HOST || 'localhost',
-  "externalHost": process.env.WEBSITE_HOSTNAME || 'localhost',
+  "externalHost": process.env.AZURE_HOST_NAME || 'localhost',
   "applicationName": p.name,
   "remoting": {
     "context": {

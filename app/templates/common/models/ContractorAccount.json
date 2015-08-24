@@ -1,0 +1,82 @@
+{
+  "name": "ContractorAccount",
+  "plural": "ContractorAccounts",
+  "description": [
+    "A generic account representing a contracted service delivery unit in an end-to-end business process (B2C and B2B)"
+  ],
+  "base": "PersistedModel",
+  "idInjection": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "generated": false,
+      "id": true,
+      "label": "Service Provider Account id",
+      "description": "The unique identifier for the contractor account"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "label": "Name",
+      "description": "The name of the contractor account"
+    },
+    "accountType": {
+      "type": "string",
+      "label": "Account type",
+      "description": "The account type of the contractor account"
+    },
+    "registeredState": {
+      "type": "string",
+      "label": "Registered state",
+      "description": "The state of the contractor account's registered business address"
+    },
+    "created": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Created",
+      "description": "The date the contractor account was created"
+    },
+    "modified": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Modified",
+      "description": "The date the service provider account was last modified"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "contractorAccountUserMapping": {
+      "type": "hasMany",
+      "model": "ContractorAccountUserMapping"
+    }
+  },
+  "acls": [{
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "contractorAccountUser",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "contractorAccountUser",
+      "permission": "ALLOW",
+      "property": "dashboard"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    }]
+}

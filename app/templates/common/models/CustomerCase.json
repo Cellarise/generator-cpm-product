@@ -1,0 +1,189 @@
+{
+  "name": "CustomerCase",
+  "plural": "CustomerCases",
+  "description": [
+    "A workflow object representing the state of a customer case."
+  ],
+  "base": "PersistedModel",
+  "idInjection": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "generated": false,
+      "id": true,
+      "label": "Case id",
+      "description": "The unique identifier for the case"
+    },
+    "customerAccountId" : {
+      "type": "string",
+      "required": true,
+      "label": "Customer account id",
+      "description": "The unique identifier for the customer account"
+    },
+    "created": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Created",
+      "description": "The date the customer account was created"
+    },
+    "modified": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Modified",
+      "description": "The date the customer account was last modified"
+    },
+    "createdExt": {
+      "type": "date",
+      "label": "Created SugarCRM",
+      "description": "The created date of the case in SugarCRM"
+    },
+    "modifiedExt": {
+      "type": "date",
+      "label": "Modified SugarCRM",
+      "description": "The last modified date of the case in SugarCRM"
+    },
+    "completedDate": {
+      "type": "date",
+      "label": "Completed date",
+      "description": "The date the case was completed"
+    },
+    "class" : {
+      "type": "string",
+      "label": "Vehicle class",
+      "description": "The case vehicle class"
+    },
+    "permitType" : {
+      "type": "string",
+      "label": "Permit type",
+      "description": "The case permit type"
+    },
+    "workflowState" : {
+      "type": "string",
+      "label": "Workflow state",
+      "description": "The case workflow state"
+    },
+    "loadType" : {
+      "type": "string",
+      "label": "Load type",
+      "description": "The case vehicle load type"
+    },
+    "vehicleType" : {
+      "type": "string",
+      "label": "Vehicle type",
+      "description": "The case vehicle type"
+    },
+    "gisCode" : {
+      "type": "string",
+      "label": "GIS code",
+      "description": "The NHVR Journey Planner GIS code"
+    },
+    "complexity" : {
+      "type": "string",
+      "label": "Complexity",
+      "description": "The case complexity (based on risk score)"
+    },
+    "assignedUserExt" : {
+      "type": "string",
+      "label": "Assigned user",
+      "description": "The user assigned to the case in SugarCRM"
+    },
+    "1_0TIME" : {
+      "type": "number",
+      "label": "1_0 time",
+      "description": "The duration of workflow step 1_0",
+      "mssql": {"dataType": "float"}
+    },
+    "2_1TIME" : {
+      "type": "number",
+      "label": "2_1 time",
+      "description": "The duration of workflow step 2_1",
+      "mssql": {"dataType": "float"}
+    },
+    "2_2TIME" : {
+      "type": "number",
+      "label": "2_2 time",
+      "description": "The duration of workflow step 2_2",
+      "mssql": {"dataType": "float"}
+    },
+    "3_0TIME" : {
+      "type": "number",
+      "label": "3_0 time",
+      "description": "The duration of workflow step 3_0",
+      "mssql": {"dataType": "float"}
+    },
+    "4_1TIME" : {
+      "type": "number",
+      "label": "4_1 time",
+      "description": "The duration of workflow step 4_1",
+      "mssql": {"dataType": "float"}
+    },
+    "4_2TIME" : {
+      "type": "number",
+      "label": "4_2 time",
+      "description": "The duration of workflow step 4_2",
+      "mssql": {"dataType": "float"}
+    },
+    "NHVRTIME" : {
+      "type": "number",
+      "label": "NHVR time",
+      "description": "The duration the case remained with NHVR",
+      "mssql": {"dataType": "float"}
+    },
+    "TOTALTIME" : {
+      "type": "number",
+      "label": "Total time",
+      "description": "The total duration of the case",
+      "mssql": {"dataType": "float"}
+    }
+  },
+  "validations": [],
+  "relations": {
+    "customerAccount": {
+      "type": "belongsTo",
+      "model": "CustomerAccount"
+    },
+    "partnerConsent": {
+      "type": "hasMany",
+      "model": "PartnerConsent"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "customerAccountUser",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "customerAccountUser",
+      "permission": "ALLOW",
+      "property": "__get__CustomerAccount"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "customerAccountUser",
+      "permission": "ALLOW",
+      "property": "__get__PartnerConsent"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    }
+  ]
+}

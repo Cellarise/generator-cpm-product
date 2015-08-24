@@ -1,0 +1,56 @@
+{
+  "name": "VehicleComponentConnection",
+  "plural": "VehicleComponentConnections",
+  "description": [
+    "A connection that can be made between two heavy vehicle components"
+  ],
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "vehicleComponentId": {
+      "type": "number",
+      "required": true,
+      "label": "Lead vehicle component",
+      "description": "The lead vehicle component"
+    },
+    "vehicleComponentAttachId": {
+      "type": "number",
+      "required": true,
+      "label": "Attaching vehicle component",
+      "description": "The secondary vehicle component connected to the lead vehicle component"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "vehicleComponent": {
+      "type": "belongsTo",
+      "model": "VehicleComponent"
+    },
+    "vehicleComponentAttach": {
+      "type": "belongsTo",
+      "model": "VehicleComponent",
+      "foreignKey": "vehicleComponentAttachId"
+    }
+  },
+  "acls": [{
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    }],
+  "methods": []
+}

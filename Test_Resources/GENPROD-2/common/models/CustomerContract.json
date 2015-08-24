@@ -1,0 +1,92 @@
+{
+  "name": "CustomerContract",
+  "plural": "CustomerContracts",
+  "description": [
+    "A customer contract."
+  ],
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "clientContractId": {
+      "type": "string",
+      "label": "Client contract id",
+      "description": "The client's unique identifier for the contract"
+    },
+    "operationsAccountId" : {
+      "type": "number",
+      "required": true,
+      "label": "Operations account id",
+      "description": "The unique identifier for the operations account"
+    },
+    "customerAccountId" : {
+      "type": "number",
+      "required": true,
+      "label": "Customer account id",
+      "description": "The unique identifier for the customer account"
+    },
+    "created": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Created",
+      "description": "The date the customer contract was created"
+    },
+    "modified": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Modified",
+      "description": "The date the customer contract was last modified"
+    },
+    "startDate": {
+      "type": "date",
+      "label": "Start date",
+      "description": "The date the contract starts"
+    },
+    "endDate": {
+      "type": "date",
+      "label": "End date",
+      "description": "The date the contract ends"
+    },
+    "description" : {
+      "type": "string",
+      "label": "Contract description",
+      "description": "A short description of the contract"
+    },
+    "vehicleType" : {
+      "type": "string",
+      "label": "Vehicle type",
+      "description": "The case vehicle type"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "customerAccount": {
+      "type": "belongsTo",
+      "model": "CustomerAccount"
+    },
+    "operationsAccount": {
+      "type": "belongsTo",
+      "model": "OperationsAccount"
+    },
+    "customerContractItem": {
+      "type": "hasMany",
+      "model": "CustomerContractItems"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "*"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    }]
+}

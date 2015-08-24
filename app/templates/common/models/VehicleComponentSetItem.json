@@ -1,0 +1,60 @@
+{
+  "name": "VehicleComponentSetItem",
+  "plural": "VehicleComponentSetItems",
+  "description": [
+    "A heavy vehicle component used for building a vehicle configuration"
+  ],
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "vehicleComponentSetId": {
+      "type": "number",
+      "required": true,
+      "label": "Vehicle component set",
+      "description": "The vehicle component set"
+    },
+    "vehicleComponentId": {
+      "type": "number",
+      "required": true,
+      "label": "Vehicle component",
+      "description": "The vehicle component"
+    },
+    "orderNum": {
+      "type": "number",
+      "label": "Order number",
+      "description": "The order number of the vehicle component within vehicle configuration"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "vehicleComponentSet": {
+      "type": "belongsTo",
+      "model": "VehicleComponentSet"
+    },
+    "vehicleComponent": {
+      "type": "belongsTo",
+      "model": "VehicleComponent"
+    }
+  },
+  "acls": [{
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    }],
+  "methods": []
+}

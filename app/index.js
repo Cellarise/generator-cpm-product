@@ -6,7 +6,7 @@ var actions = require('../lib/actions');
 /**
  * {description}
  * @module cpm-product
- * @example
+ * @example @lang off
  {>example-index/}
  */
 

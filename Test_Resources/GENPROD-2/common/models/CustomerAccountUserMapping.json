@@ -1,0 +1,52 @@
+{
+  "name": "CustomerAccountUserMapping",
+  "plural": "CustomerAccountUserMappings",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "customerAccountId": {
+      "type": "number",
+      "required": true,
+      "label": "Customer account id",
+      "description": "The unique identifier for the customer account"
+    },
+    "userModelId": {
+      "type": "number",
+      "required": true,
+      "label": "User profile id",
+      "description": "The unique identifier for the user profile"
+    },
+    "role": {
+      "type": "string",
+      "required": true,
+      "label": "Role",
+      "description": "The account mapping role"
+    },
+    "created": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Created",
+      "description": "The date the customer account was created"
+    },
+    "modified": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Modified",
+      "description": "The date the customer account was last modified"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "customerAccount": {
+      "type": "belongsTo",
+      "model": "CustomerAccount"
+    },
+    "userModel": {
+      "type": "belongsTo",
+      "model": "UserModel"
+    }
+  },
+  "acls": []
+}

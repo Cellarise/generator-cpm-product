@@ -14,6 +14,8 @@
     "body-parser#json": {"params": {"limit": "10mb"}}
   },
   "routes": {
+    "./middleware/coverage": {"paths": "/coverage"},
+    "./middleware/coverageReset": {"paths": "/coverageReset"},
     "loopback#status": {"paths": "/status"}
   },
   "files": {

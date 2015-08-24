@@ -1,0 +1,196 @@
+{
+  "name": "UserModel",
+  "base": "User",
+  "idInjection": true,
+  "properties": {
+    "realm": {
+      "type": "string",
+      "label": "Realm",
+      "description": "The application namespace for the user"
+    },
+    "name": {
+      "type": "string",
+      "label": "Name",
+      "description": "The name of the user"
+    },
+    "username": {
+      "type": "string",
+      "label": "Username",
+      "description": "The name of the user"
+    },
+    "password": {
+      "type": "string",
+      "required": true,
+      "label": "Password",
+      "description": "The password for the user"
+    },
+    "email": {
+      "type": "string",
+      "required": true,
+      "label": "Email address",
+      "description": "The email address of the user"
+    },
+    "emailVerified": {
+      "type": "boolean",
+      "label": "Email verified",
+      "description": "A flag indicating whether the user's email address is verified"
+    },
+    "verificationToken": {
+      "type": "string",
+      "label": "Verification token",
+      "description": "The email verification token for a newly registered user"
+    },
+    "status": {
+      "type": "string",
+      "label": "Status",
+      "description": "The status of the user profile"
+    },
+    "created": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Created",
+      "description": "The date the user profile was created"
+    },
+    "modified": {
+      "type": "date",
+      "default": "$now",
+      "required": true,
+      "label": "Modified",
+      "description": "The date the user profile was last modified"
+    },
+    "lastUpdated": {
+      "type": "date",
+      "label": "Last updated",
+      "description": "The date the user profile was last modified"
+    }
+  },
+  "hidden": ["password"],
+  "validations": [{
+    "name": {
+      "type": "string",
+      "length": {
+        "min": 1,
+        "max": 24
+      }
+    },
+    "username": {
+      "type": "string",
+      "length": {
+        "min": 1,
+        "max": 24
+      }
+    },
+    "password": {
+      "type": "string",
+      "required": true,
+      "length": {
+        "min": 6,
+        "messages": "Password should be greater than 5 characters"
+      }
+    },
+    "email": {
+      "type": "string",
+      "required": true,
+      "format": {
+        "with": "\\S+@\\S+\\.\\S+",
+        "messages": "Email address should have an @ symbol and be followed by a domain suffix e.g. '.com'"
+      }
+    },
+    "changePassword": {
+      "type": "string",
+      "required": true,
+      "length": {
+        "min": 6,
+        "messages": "Password should be greater than 5 characters"
+      }
+    }
+  }],
+  "relations": {
+    "customerAccountUserMapping": {
+      "type": "hasMany",
+      "model": "CustomerAccountUserMapping"
+    },
+    "partnerAccountUserMapping": {
+      "type": "hasMany",
+      "model": "PartnerAccountUserMapping"
+    },
+    "operationsAccountUserMapping": {
+      "type": "hasMany",
+      "model": "OperationsAccountUserMapping"
+    },
+    "accessTokens": {
+      "type": "hasMany",
+      "model": "AccessToken"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "deleteById"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "login"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "logout"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "changePassword"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "validate"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "findById"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "updateAttributes"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "confirm"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "resetPassword",
+      "accessType": "EXECUTE"
+    }
+  ],
+  "methods": []
+}
