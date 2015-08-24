@@ -2,7 +2,7 @@
 /* Feature: Package: Add default generator for modules */
 module.exports = (function testSuite() {
   var English = require("yadda").localisation.English;
-  var assert = require('yeoman-generator').assert;
+  //var assert = require('yeoman-generator').assert;
   var path = require("path");
   var helpers = require("yeoman-generator").test;
   var SANDBOX = path.resolve(__dirname, '../../Temp');
