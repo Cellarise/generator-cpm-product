@@ -15,6 +15,13 @@
 <tr>
             <td style="width:20px;padding:0;margin:0;text-align:center;"><img src="https://jira.cellarise.com:80/secure/viewavatar?size=xsmall&amp;avatarId=10419&amp;avatarType=issuetype"/></td>
             <td style="width:80px;text-align:left;">Non-functional</td>
+            <td style="width:80px;text-align:left;">GENPROD-14</td>
+            <td><p>Package: Update development dependencies and configure for travis-ci</p><p></p></td>
+          </tr>
+        
+<tr>
+            <td style="width:20px;padding:0;margin:0;text-align:center;"><img src="https://jira.cellarise.com:80/secure/viewavatar?size=xsmall&amp;avatarId=10419&amp;avatarType=issuetype"/></td>
+            <td style="width:80px;text-align:left;">Non-functional</td>
             <td style="width:80px;text-align:left;">GENPROD-13</td>
             <td><p>Package: Update development dependencies and configure for travis-ci</p><p></p></td>
           </tr>
