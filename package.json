@@ -14,7 +14,7 @@
   "config": {
     "projectCode": "GENPROD",
     "build": "n/a",
-    "buildTimestamp": "2014-08-13T04:52:58.448Z",
+    "buildTimestamp": "2015-08-25T00:08:26.909Z",
     "adminEmail": "mail@cellarise.com",
     "coverage": {
       "codeClimate": true,

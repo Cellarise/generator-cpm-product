@@ -3,7 +3,6 @@
 ### cpm-product
 Yeoman generator for Cellarise products
 **Example**  
-```none
 ## Generators
 
 Available generators:
@@ -13,8 +12,6 @@ Available generators:
 
 ### App
 Sets up a new Cellarise product, generating all the boilerplate code to fast track development.
-
-```
 
 -
 
