@@ -86,12 +86,12 @@
     "build": "Build"
   },
   "dependencies": {
-    "decompress": "^2.3.0",
+    "decompress": "^3.0.0",
     "download": "^4.1.2",
-    "ramda": "^0.17.1",
+    "ramda": "^0.18.0",
     "underscore": "^1.7.0",
     "yeoman-environment": "^1.1.1",
-    "yeoman-generator": "^0.20.1",
+    "yeoman-generator": "^0.21.1",
     "yosay": "^1.0.0"
   },
   "devDependencies": {
@@ -111,5 +111,6 @@
     "run-sequence": "^1.0.0",
     "ramda": "^0.14.0",
     "mkdirp": "^0.5.0"
-  }
+  },
+  "optionalDependencies": {}
 }
