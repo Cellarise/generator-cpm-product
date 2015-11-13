@@ -5,5 +5,5 @@
 Copyright (c) 2015 {author}
 
 ## Dependencies
-[generator-cpm-product@0.0.0](&quot;https://github.com/Cellarise/generator-cpm-product&quot;) - &quot;MIT License (MIT)&quot;, 
+[generator-cpm-product@0.1.2](&quot;https://github.com/Cellarise/generator-cpm-product&quot;) - &quot;MIT License (MIT)&quot;, 
 *documented by [npm-licenses](http://github.com/AceMetrix/npm-license.git)*.
