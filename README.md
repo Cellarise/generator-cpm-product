@@ -58,6 +58,18 @@ Sets up a new Cellarise product, generating all the boilerplate code to fast tra
   </tr>
     
 <tr>
+        <td colspan=4><strong>Version: 0.1.6 - released 2016-03-28</strong></td>
+      </tr>
+        
+<tr>
+            <td style="width:20px;padding:0;margin:0;text-align:center;"><img src="https://jira.cellarise.com:80/secure/viewavatar?size=xsmall&amp;avatarId=10419&amp;avatarType=issuetype"/></td>
+            <td style="width:80px;text-align:left;">Non-functional</td>
+            <td style="width:80px;text-align:left;">GENPROD-18</td>
+            <td><p>Package: Update package dependencies</p><p></p></td>
+          </tr>
+        
+    
+<tr>
         <td colspan=4><strong>Version: 0.1.5 - released 2016-02-16</strong></td>
       </tr>
         
@@ -206,6 +218,6 @@ MIT License (MIT). All rights not explicitly granted in the license are reserved
 
 Copyright (c) 2015 Cellarise
 ## Dependencies
-[generator-cpm-product@0.1.3](&quot;https://github.com/Cellarise/generator-cpm-product&quot;) - &quot;MIT License (MIT)&quot;, 
+[generator-cpm-product@0.1.5](&quot;https://github.com/Cellarise/generator-cpm-product&quot;) - &quot;MIT License (MIT)&quot;, 
 *documented by [npm-licenses](http://github.com/AceMetrix/npm-license.git)*.
 
