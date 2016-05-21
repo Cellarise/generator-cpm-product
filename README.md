@@ -58,6 +58,18 @@ Sets up a new Cellarise product, generating all the boilerplate code to fast tra
   </tr>
     
 <tr>
+        <td colspan=4><strong>Version: 0.1.8 - released 2016-05-22</strong></td>
+      </tr>
+        
+<tr>
+            <td style="width:20px;padding:0;margin:0;text-align:center;"><img src="https://jira.nhvr.net:80/secure/viewavatar?size=xsmall&amp;avatarId=10418&amp;avatarType=issuetype"/></td>
+            <td style="width:80px;text-align:left;">Non-functional</td>
+            <td style="width:80px;text-align:left;">GENPROD-20</td>
+            <td><p>Package: Update package dependencies</p><p></p></td>
+          </tr>
+        
+    
+<tr>
         <td colspan=4><strong>Version: 0.1.7 - released 2016-05-04</strong></td>
       </tr>
         
