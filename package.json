@@ -90,7 +90,7 @@
     "download": "^6.0.0",
     "ramda": "^0.24.0",
     "underscore": "^1.7.0",
-    "yeoman-environment": "^1.1.1",
+    "yeoman-environment": "^2.0.0",
     "yeoman-generator": "^1.0.1",
     "yosay": "^2.0.0"
   },
