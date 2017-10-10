@@ -88,7 +88,7 @@
   "dependencies": {
     "decompress": "^4.0.0",
     "download": "^6.0.0",
-    "ramda": "^0.24.1",
+    "ramda": "^0.25.0",
     "underscore": "^1.7.0",
     "yeoman-environment": "^2.0.0",
     "yeoman-generator": "^2.0.0",
