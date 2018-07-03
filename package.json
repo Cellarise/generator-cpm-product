@@ -91,7 +91,7 @@
     "ramda": "^0.25.0",
     "underscore": "^1.7.0",
     "yeoman-environment": "^2.0.0",
-    "yeoman-generator": "^2.0.0",
+    "yeoman-generator": "^3.0.0",
     "yosay": "^2.0.0"
   },
   "devDependencies": {
